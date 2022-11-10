@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+
+<body class="😎">
+    <!-- We can use emojis in html as class,id's,name...etc..(notice:can be applicable for only till few constrains) -->
+    <div class="calculator" id="calculator">
+        <div class="container">
+            <!-- Display for text entry and visibility -->
+            <input type="text" name="screen" onkeypress="return Noalph(event)" id="cali-screen" placeholder="0">
+
+            <!-- Buttons -->
+            <button class="button" onclick="themechange()" id="theme">T</button>
+
+            <!--Theme button-->
+            <button class="button" onclick="Clear()" id="clear">Cl</button>
+            <button class="button" onclick="del()" id="delete">Del</button>
+            <button class="button digits" onclick='show("(")' id="buttonl">(</button>
+            <button class="button digits" onclick='show(")")' id="buttonr">)</button>
+            <button class="button power" onclick="square()" id="square"> X&sup2;</button>
+            <button class="button power" onclick="cube()" id="cube">X&sup3;</button>
+
+            <button class="button parameters" onclick="sin()" id="sin">sin</button>
+            <button class="button digits" onclick="show('7')" onkeypress="show('7')" id="button7">7</button>
+            <button class="button digits" onclick="show('8')" id="button8">8</button>
+            <button class="button digits" onclick="show('9')" id="button9">9</button>
+            <button class="button operators" onclick="sqrt()" id="sqrt">√</button>
+            <button class="button operators" onclick="show(' % ')" id="modulus">%</button>
+
+            <button class="button parameters" onclick="cos()" id="cos">cos</button>
+            <button class="button digits" onclick="show('4')" id="button4">4</button>
+            <button class="button digits" onclick="show('5')" id="button5">5</button>
+            <button class="button digits" onclick="show('6')" id="button6">6</button>
+            <button class="button operators" onclick="show(' / ')" id="division">/</button>
+            <button class="button operators" onclick="show(' * ')" id="mult">X</button>
+
+            <button class="button parameters" onclick="tan()" id="tan">tan</button>
+            <button class="button digits" onclick="show('1')" id="button1">1</button>
+            <button class="button digits" onclick="show('2')" id="button2">2</button>
+            <button class="button digits" onclick="show('3')" id="button3">3</button>
+            <button class="button operators" onclick="show(' + ')" id="plus">+</button>
+            <button class="button operators" onclick="show(' - ')" id="minus">-</button>
+
+            <button class="button parameters" onclick="show('3.141')" id="pi">pi</button>
+            <button class="button parameters" onclick="log()" id="log">log</button>
+            <button class="button digits" onclick="show('0')" id="zero">0</button>
+            <button class="button" onclick="show('.')" id="point">.</button>
+            <button class="button" onclick="calculate()" id="equal">=</button>
+        </div>
+    </div>
+    <script>let screen = document.getElementById("cali-screen");  //for screen displaying
+        let display = document.querySelector('#cali-screen');      //Same but for the functions like sin,cos,tan,pi,square,cube,sqrt...
+        // This function is used to take the input from the keyboard
+        // function Noalph() is described for not allowing alphabets....No-Aplhabets=Noaplh
+        function Noalph(e) {
+            var x = e.which || e.keycode;
+            if ((x == 37) || (x >= 40 && x <= 57) && (x != 44))
+                return true;
+            else
+                return false;
+        }
+
+        // function show() is used to show the numbers and symbols on the screen
+        function show(num) {
+            screen.value += num;
+            console.log(display.value);
+        }
+
+        // funtion calculate() is used to evaluate the parameters shown on display and stored in screen.value
+        function calculate() {
+            try {
+                screen.value = eval(screen.value);
+            }
+            catch (err) {
+                alert("Invalid Input");
+            }
+        }
+
+        // As name says...this function used for clear button
+        function Clear() {
+            display.value = "";
+            console.log("cleared");
+        }
+
+        // del() is used to delete the input on the display
+        function del() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        // There are trigonometry dealing functions from Math inbuilt function
+        function sin() {
+            display.value = Math.sin(display.value);
+        }
+        function cos() {
+            display.value = Math.cos(display.value);
+        }
+        function tan() {
+            display.value = Math.tan(display.value);
+        }
+
+        // These functions deals with the power factor
+        function square() {
+            display.value = Math.pow(display.value, 2);
+        }
+        function cube() {
+            display.value = Math.pow(display.value, 3);
+        }
+        function sqrt() {
+            display.value = Math.sqrt(display.value, 2);
+        }
+        function log() {
+            display.value = Math.log(screen.value);
+        }
+
+        // Function for Changing Theme of the page
+        function themechange() {
+            let backgroundtheme = document.body;
+            let togglebtn = document.querySelector('#theme');
+            let calculatorTheme = document.querySelector('#calculator');
+            let inputTheme = document.querySelector("#cali-screen");
+            backgroundtheme.classList.toggle("darkThemeBackground");
+            togglebtn.classList.toggle('active');
+            calculatorTheme.classList.toggle('active');
+            inputTheme.classList.toggle('active');
+        }
+
+        // EventListening for showing the result on the screen
+        var box = document.querySelector('#equal');
+        box.addEventListener('click', () => {
+            console.log(eval(screen.value));
+        })</script>
+</body>
+
+</html>

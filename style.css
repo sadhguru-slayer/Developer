@@ -1,0 +1,356 @@
+* {
+    font-family: 'Poiret One', cursive;
+    margin: 0%;
+    padding: 0%;
+    outline: none;
+    font-weight: 900;
+    transition: all 0.5s ease-in-out;
+    font-size: 20px;
+}
+
+/* root for variables */
+:root {
+    --primary: #ffffff;
+    --secondary: black;
+}
+
+/* THIS IS THE MAIN BODY */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, rgb(51, 176, 168), rgb(53, 92, 210), rgb(249, 148, 247));
+}
+
+/* THIS IS OUR MAIN PARENT DIV */
+.calculator {
+    position: relative;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: inset 4px 4px 4px var(--primary),
+        5px 5px 5px rgb(44, 44, 44);
+    background-color: #ecf0f3;
+    opacity: 1;
+    /* background:transparent; */
+    /*To make the calculator body transparent Prefering not to make tranparent*/
+}
+
+/* IT'S WHERE OUR CONTENT IS IMBEDED */
+.container {
+    /* backdrop-filter: blur(15px); */
+    /* -webkit-backdrop-filter: blur(15px); */
+    display: grid;
+    grid-template-columns: repeat(6, 80px);
+    grid-row-gap: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    backdrop-filter: blur(15px);
+    background: transparent;
+}
+
+/* ZTHIS IS INPUT SCREEN WHICH HAVE ID AS #cali-screen */
+#cali-screen {
+    border: none;
+    border-radius: 40px;
+    box-shadow: inset 2px 2px 4px #9e9b9b,
+        4px 4px 4px rgb(57, 57, 57, .30);
+    color: rgb(70, 70, 70);
+    font-weight: 600;
+    font-size: xx-large;
+    margin-bottom: 20px;
+    padding: 20px;
+    order: 0;
+}
+
+/* --BUTTON IS A CLASS FOR ALL THE BUTTONS IN THE CALCULATOR INCLUDING THEME BUTTON */
+.button {
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 4px #e9e8e8,
+        4px 4px 4px rgb(57, 57, 57, .50);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/*IT'S AS SAME AS CALING THE ELEMENT...BUT WITH THE USE OF PSUEDO CODE*/
+input:first-child {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    height: 50px;
+}
+
+
+button:nth-child(31) {
+    width: 130px;
+    height: 50px;
+    border-radius: 40px;
+    background-color: rgb(49, 107, 114);
+    font-size: xx-large;
+}
+
+/* ------------------------------------------------------------ */
+
+/* THEME BUTTON CALLED BY IT'S ID */
+
+#theme {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    color: #ecf0f3;
+    border: none;
+    margin-left: 20px;
+    margin-top: 15px;
+    box-shadow: 4px 4px 4px rgb(57, 57, 57, .50);
+    background-color: #202020;
+    animation-name: togglel;
+    position: relative;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-direction: normal;
+}
+
+.parameters {
+    background-color: rgb(239, 132, 132);
+}
+
+#point,
+#square,
+#cube,
+#sqrt {
+    background-color: rgb(248, 163, 221);
+}
+
+#clear {
+    background-color: rgb(114, 92, 194);
+}
+
+#delete {
+    background-color: rgb(249, 44, 44);
+}
+
+.digits {
+    background-color: rgb(148, 207, 255);
+}
+
+/* --------------------------------------------------------------- */
+/* HOVER SECTION */
+
+.parameters:hover {
+    background-color: rgb(232, 77, 77);
+    color: #ecf0f3;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+#clear:hover {
+    background-color: rgb(87, 62, 177);
+    color: #ecf0f3;
+}
+
+#point:hover,
+#square:hover,
+#cube:hover,
+#sqrt:hover {
+    background-color: rgb(224, 114, 189);
+    color: #ecf0f3;
+}
+
+#delete:hover {
+    background-color: rgb(252, 17, 17);
+    color: #ecf0f3;
+}
+
+.operators {
+    background-color: rgb(163, 181, 253);
+}
+
+.digits:hover {
+    background-color: rgb(63, 169, 255);
+    color: #ecf0f3;
+}
+
+.operators:hover {
+    background-color: rgb(107, 136, 254);
+    color: #ecf0f3;
+}
+
+#equal:hover {
+    background-color: rgb(1, 76, 86);
+    color: #ecf0f3;
+}
+
+/* light theme ends here */
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+
+/*--DARK THEME SECTION*/
+
+.darkThemeBackground {
+    background-image: linear-gradient(to bottom right, rgb(40, 13, 63), rgb(92, 28, 100), rgb(10, 27, 77));
+}
+
+#theme.active {
+    background-color: #ecf0f3;
+    color: #202020;
+    animation-name: toggled;
+    position: relative;
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+    animation-direction: normal;
+    box-shadow: 1px 1px 1px #212020,
+        4px 4px 3px rgba(48, 48, 48, 0.5);
+    border: #e7dada 1px 4px;
+}
+
+/* Animations for the theme changing button */
+
+@keyframes toggled {
+    0% {
+        left: 12px;
+    }
+
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes togglel {
+    0% {
+        left: 12px;
+    }
+
+    100% {
+        left: 0px;
+    }
+}
+
+#calculator.active {
+    background-color: #222222;
+    box-shadow: inset 4px 4px 4px #505050,
+        5px 5px 5px rgb(44, 44, 44);
+}
+
+#cali-screen.active {
+    color: #ecf0f3;
+    background-color: rgb(85, 83, 83);
+    box-shadow: inset 2px 2px 4px #494848,
+        4px 4px 4px rgb(57, 57, 57, .30);
+
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+/* For responsiveness */
+@media (max-width:700px) {
+
+    .container {
+        grid-template-columns: repeat(5, 60px);
+        grid-row-gap: 0.7rem;
+    }
+
+    input {
+        border-radius: 40px;
+        box-shadow: inset -2px -1px 7px #525252,
+            inset 6px 6px 10px rgb(57, 57, 57, .30);
+        color: rgb(70, 70, 70);
+        order: 0;
+    }
+
+    .button {
+        height: 45px;
+        width: 45px;
+        box-shadow: inset 2px 2px 4px #c4bebe,
+            4px 4px 4px rgb(57, 57, 57, .50);
+    }
+
+    input:first-child {
+        grid-column-start: 1;
+        grid-column-end: 5;
+        height: 50px;
+    }
+
+
+    button:nth-child(31) {
+        width: 110px;
+        height: 45px;
+        border-radius: 40px;
+    }
+
+    /* --Order used to alter the positions of the buttons in the calculator without shuffling in the body of html-- */
+    #theme {
+        height: 40px;
+        width: 40px;
+        box-shadow: inset 2px 2px 5px #373434,
+            4px 4px 4px rgb(57, 57, 57, .50);
+        order: 1;
+
+    }
+
+    #clear {
+        order: 2;
+        background-color: rgb(114, 92, 194);
+    }
+
+    #delete {
+        order: 3;
+        background-color: rgb(249, 44, 44);
+    }
+
+    #buttonl,
+    #buttonr,
+    #pi {
+        order: 4;
+    }
+
+    #sin,
+    #cos,
+    #tan {
+        order: 5;
+    }
+
+    #square,
+    #cube {
+        order: 6;
+    }
+
+    #button7,
+    #button8,
+    #button9 {
+        order: 7;
+    }
+
+    #sqrt,
+    #modulus {
+        order: 7;
+    }
+
+    #button4,
+    #button5,
+    #button6,
+    #mult,
+    #division {
+        order: 8;
+    }
+
+    #button1,
+    #button2,
+    #button3,
+    #plus,
+    #minus {
+        order: 9;
+    }
+
+    #log,
+    #zero,
+    #point,
+    #equal {
+        order: 10;
+    }
+}
